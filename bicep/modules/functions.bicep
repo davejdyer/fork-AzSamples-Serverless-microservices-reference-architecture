@@ -4,6 +4,7 @@ param functionApps array
 param appServicePlanName string
 param location string = resourceGroup().location
 param staticWebAppURL string
+@secure()
 param appInsightsInstrumentationKey string
 param resourceTags object
 
@@ -20,6 +21,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   kind: 'StorageV2'
   properties: {
     supportsHttpsTrafficOnly: true
+    minimumTlsVersion: 'TLS1_2'
     encryption: {
       services: {
         file: {
@@ -48,7 +50,7 @@ resource plan 'Microsoft.Web/serverFarms@2020-06-01' = {
   properties: {}
 }
 
-resource functionApp 'Microsoft.Web/sites@2020-06-01' = [for functionApp in functionApps :{
+resource functionApp 'Microsoft.Web/sites@2023-12-01' = [for functionApp in functionApps :{
   name: '${functionAppPrefix}${functionApp}'
   location: location
   kind: 'functionapp'
@@ -86,6 +88,7 @@ resource functionApp 'Microsoft.Web/sites@2020-06-01' = [for functionApp in func
           staticWebAppURL
         ]
       }
+      minTlsVersion: '1.2'
     }
     httpsOnly: true
   }

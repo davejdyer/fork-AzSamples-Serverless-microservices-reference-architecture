@@ -16,7 +16,7 @@ var containerNames = [
   'archiver'
 ]
 
-resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2021-06-15' = {
+resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2024-05-15' = {
   name: toLower(accountName)
   kind: 'GlobalDocumentDB'
   location: location
@@ -38,7 +38,8 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2021-06-15' = {
           backupIntervalInMinutes: 240
           backupRetentionIntervalInHours: 8
       }
-  }
+    }
+    minimalTlsVersion: 'Tls12'
   }
 }
 

@@ -50,7 +50,7 @@ module sqlDb 'modules/sqldb.bicep' = {
   name: 'sqldb'
   params: {
     sqlServerName: sqlServerName
-    sqlDatabaeName: applicationName
+    sqlDatabaseName: applicationName
     administratorLogin: sqlAdminLogin
     administratorPassword: sqlAdminPassword
     location: location
